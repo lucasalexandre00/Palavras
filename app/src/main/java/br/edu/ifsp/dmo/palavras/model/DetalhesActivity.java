@@ -21,7 +21,10 @@ public class DetalhesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes);
 
-        letra = "a";
+        if (getIntent().hasExtra(Constants.LETRA_ID)){
+            letra = getIntent().getStringExtra(Constants.LETRA_ID);
+        }
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);

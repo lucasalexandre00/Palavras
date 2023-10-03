@@ -1,6 +1,7 @@
 package br.edu.ifsp.dmo.palavras.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.dmo.palavras.R;
+import br.edu.ifsp.dmo.palavras.model.Constants;
+import br.edu.ifsp.dmo.palavras.model.DetalhesActivity;
 
 public class LetrasAdapter extends RecyclerView.Adapter<LetrasAdapter.ViewHolder> {
     private Context context;
@@ -40,6 +43,14 @@ public class LetrasAdapter extends RecyclerView.Adapter<LetrasAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull LetrasAdapter.ViewHolder holder, int position) {
         holder.itemButton.setText(letras.get(position).toString());
+
+        holder.itemButton.setOnClickListener( v -> abrirDetalhes(position));
+    }
+
+    private void abrirDetalhes(int position) {
+        Intent intent = new Intent(context, DetalhesActivity.class);
+        intent.putExtra(Constants.LETRA_ID, letras.get(position).toString());
+        context.startActivity(intent);
     }
 
     @Override
